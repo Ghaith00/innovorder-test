@@ -32,9 +32,15 @@ const update = (request, response, next)=>{
   error = scheduleObject.validateSync();
   if(!error){
     // save one schedule set object 
-    ScheduleSet.collection.drop();
-    scheduleObject.save();
-    response.send(returnJson);
+    if (validator.coherentDates(newScheduleSet)){
+        ScheduleSet.collection.drop();
+        scheduleObject.save();
+        response.send(returnJson);
+    } else {
+        returnJson.update = false; returnJson.error = true;
+        returnJson.message = 'schedule set is not coherent';
+        response.send(returnJson);
+    }
   } else {
     // errors messages
     returnJson.update = false; returnJson.error = true;
