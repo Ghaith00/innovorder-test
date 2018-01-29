@@ -1,7 +1,7 @@
 const express = require('express');
 const app = module.exports = express.Router();
 const scheduleController = require('./controllers/schedule');
-
+const orderController = require('./controllers/order');
 
 /**
  * GET /api/test
@@ -28,3 +28,22 @@ app.put('/schedule', scheduleController.update);
  * Delete the current schedule
  */
 app.delete('/schedule', scheduleController.remove);
+
+/**
+* GET /api/order
+* View all orders
+*/
+app.get('/order', orderController.list);
+
+
+/**
+* POST /api/order
+* Create an order
+*/
+app.post('/order', orderController.create);
+
+/**
+* PUT /api/order
+* Update an order
+*/
+app.put('/order', orderController.update);
