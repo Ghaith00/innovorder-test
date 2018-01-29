@@ -33,4 +33,23 @@ const coherentDates = (scheduleSet) => {
   return coherent;
 }
 
-module.exports =  { coherentDates };
+/**
+ * check if the given date is in schedule
+ * time should be multiple of 15
+ */
+const inSchedule = async (day, start, end) => {
+  let valid = false;
+  // get schedules
+  const schedules = await ScheduleSet.findOne().exec();
+
+  // find time in schedule
+  schedules.scheduleSet.forEach((shift)=>{
+    // store the valid day
+    if (day == shift.day && shift.start <= start && shift.end >= end){
+        valid = true;
+    }
+  });
+  return valid;
+}
+
+module.exports =  { coherentDates , inSchedule };

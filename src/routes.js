@@ -47,3 +47,9 @@ app.post('/order', orderController.create);
 * Update an order
 */
 app.put('/order', orderController.update);
+
+/**
+ * GET /api/next
+ * get next Available Ordering Date
+ */
+app.get('/next', orderController.nextAvailableOrderDate);
