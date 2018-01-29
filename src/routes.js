@@ -1,5 +1,7 @@
 const express = require('express');
 const app = module.exports = express.Router();
+const scheduleController = require('./controllers/schedule');
+
 
 /**
  * GET /api/test
