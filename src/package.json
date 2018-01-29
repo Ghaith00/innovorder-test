@@ -1,0 +1,26 @@
+{
+  "name": "innovorder_test",
+  "version": "1.0.0",
+  "description": "Innovorder hiring test",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ghaith00/innovorder-test.git"
+  },
+  "keywords": [
+    "nodejs",
+    "angularjs",
+    "express",
+    "mongodb"
+  ],
+  "author": "Ghaith Tabib",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ghaith00/innovorder-test/issues"
+  },
+  "homepage": "https://github.com/Ghaith00/innovorder-test#readme"
+}
