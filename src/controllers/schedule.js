@@ -1,4 +1,5 @@
 const ScheduleSet = require('./../models/schedule-set');
+const validator = require('./../validators');
 
 /**
  * Get current schedule set
