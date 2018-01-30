@@ -1,0 +1,171 @@
+<div class="container">
+    <br>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Day</th>
+          <th scope="col">Shifts</th>
+          <th scope="col">Add Shift</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="(day, scheduleDay) in scheduleSet">
+          <th scope="row">{{scheduleDay.name}}</th>
+          <td >
+            <h5 ng-repeat="schedule in scheduleDay.times">
+              <span class="badge badge-success" >
+                From {{schedule.start}} To {{schedule.end}}
+              </span>
+              <a href="" class="badge badge-warning" data-toggle="modal" data-target="#edit" ng-click="select(schedule.id, day)">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </a>
+              <a href="" class="badge badge-danger">
+                <i class="fa fa-times" aria-hidden="true" data-toggle="modal" data-target="#delete" ng-click="select(schedule.id, day)"></i>
+              </a>
+            </h5>
+          </td>
+          <td>
+            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#new" ng-click="select(-1 , day)">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <button type="button" class="btn btn-success" ng-click="updateSchedule()">
+      <i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save
+    </button>
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#clear" >
+      <i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Clear All
+    </button>
+    <hr>
+  
+    <!-- Modals -->
+  
+    <!-- 'Clear all' Modal -->
+    <div class="modal fade" id="clear" tabindex="-1" role="dialog" aria-labelledby="clearLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="clearLabel">Clear All</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete all history?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="deleteSchedule()">Yes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!--  'Delete' Modal -->
+    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteLabel">Delete Row</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete the row?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="deleteRow()">Yes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!--New Shift -->
+    <div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="newLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="newLabel">New Shift On {{scheduleSet[selectedDay].name}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+  
+            <form>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Start (Minutes) {{formatTime(start)}}:</label>
+                <input class="form-control"  ng-model="start" type="number" min=0 max=1440 step=15 >
+              </div>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">End (Minutes) {{formatTime(end)}}:</label>
+                <input class="form-control" ng-model="end" type="number" min=0 max=1440 step=15 >
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addRow()">Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!--Edit Shift -->
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="editLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="newLabel">Edit Shift On {{scheduleSet[selectedDay].name}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+  
+            <form>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Start (Minutes) {{formatTime(start)}}:</label>
+                <input class="form-control"  ng-model="start" type="number" min=0 max=1440 step=15 >
+              </div>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">End (Minutes) {{formatTime(end)}}:</label>
+                <input class="form-control" ng-model="end" type="number" min=0 max=1440 step=15 >
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="updateRow()">Apply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- error -->
+    <div class="modal fade" id="error" tabindex="-1" role="dialog" aria-labelledby="errorLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="errorLabel">{{error.title}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            {{error.message}}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  

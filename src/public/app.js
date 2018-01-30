@@ -7,7 +7,8 @@ angular.module('app', ['ui.router'])
     $stateProvider
       .state('schedule', {
         url: '/schedule',
-        controller: 'scheduleCtrl'
+        controller: 'scheduleCtrl',
+        templateUrl: 'static/partials/schedule.html'        
       })
       .state('order', {
         url: '/order',
