@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('orderCtrl', ['$scope', '$http', function($scope, $http) {
+  .controller('orderCtrl', ['$scope', '$http', '$websocket', function($scope, $http, $websocket) {
     /**
      * Models
      */
@@ -15,6 +15,16 @@ angular.module('app')
       'SUN' : 'Sunday'
     };
     $scope.error = {'message' : '', 'title' : ''};
+    const dataStream = $websocket('ws://' + window.location.hostname + ':12345');
+
+    /**
+     * update next available ordering time in real time
+     */
+     dataStream.onMessage(function(message) {
+       $scope.nextOrderData =  JSON.parse(message.data);
+       $scope.getOrders();
+       $scope.$digest();
+     });
 
     /**
      * Format date to a readble text
