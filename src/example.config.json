@@ -3,6 +3,7 @@
     "host" : "*******",
     "secret" : "?RW|0cDc;r'P|yOSB*Z?CO%sm5H_&w'+GJ26ARUEel\"_Ms{IvJVvWp_)=pu)_k`",
     "database" : "mongodb://ghaith:12345678@ds213688.mlab.com:13688/innovorder",
+    "wsPort" : 12345,
     "debug": true
 }
   
