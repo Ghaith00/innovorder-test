@@ -1,0 +1,96 @@
+<div class="container">
+    <br>
+    <div class="alert alert-success" role="alert">
+      The next available ordering date is {{dayMap[nextOrderData.day]}} at {{formatTime(nextOrderData.time)}}
+    </div>
+    <hr>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Order</th>
+          <th scope="col">User</th>
+          <th scope="col">Order Time</th>
+          <th scope="col">Preparation time</th>
+          <th scope="col">Additional delay</th>
+          <th scope="col">Price</th>
+          <th scope="col">Order delivery</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="order in orders">
+          <th scope="row">{{order.content}}</th>
+          <td>{{order.clientName}}</td>
+          <td>{{formatDate(order.createdAt)}}</td>
+          <td>{{order.preparationDelay}} minutes</td>
+          <td>{{order.rushDelay}} minutes</td>
+          <td>{{order.price}} <i class="fa fa-eur" aria-hidden="true"></i></td>
+          <td>{{dayMap[order.nextAvailableDate.day]}} at {{formatTime(order.nextAvailableDate.time)}}</i></td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#new">
+      <i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;New order
+    </button>
+  
+    <!--New Order -->
+    <div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="newLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="newLabel">New Order</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form name="orderForm">
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Order :</label>
+                <select class="form-control" name="orders" ng-model="order" required>
+                 <option value="BW">Beef wellington</option>
+                 <option value="P4C">Pizza 4 cheeses</option>
+                 <option value="FC">Fish couscou</option>
+                 <option value="R">Risotto</option>
+               </select>
+              </div>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">User :</label>
+                <input class="form-control"  ng-model="user" type="text" required>
+              </div>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Additional delay (Minutes) :</label>
+                <input class="form-control"  ng-model="additional" type="number" required>
+              </div>
+  
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-disabled="orderForm.$invalid" ng-click="newOrder()">Order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- error -->
+    <div class="modal fade" id="error" tabindex="-1" role="dialog" aria-labelledby="errorLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="errorLabel">{{error.title}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            {{error.message}}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

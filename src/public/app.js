@@ -12,7 +12,8 @@ angular.module('app', ['ui.router'])
       })
       .state('order', {
         url: '/order',
-        controller: 'orderCtrl'
+        controller: 'orderCtrl',
+        templateUrl: 'static/partials/order.html'        
       });
     $urlRouterProvider.otherwise('/schedule');
 });
