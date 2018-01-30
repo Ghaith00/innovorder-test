@@ -14,7 +14,8 @@ const remoteDepsJS 	= [
 						'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js',
 						'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js',
 						'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js',
-						'https://unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js'
+						'https://unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js',
+						'https://cdn.rawgit.com/AngularClass/angular-websocket/v2.0.0/dist/angular-websocket.min.js'
 					];
 const depsJS        = [
 						'public/vendor/96f065634a.js',
@@ -22,7 +23,8 @@ const depsJS        = [
 						'public/vendor/popper.min.js',
 						'public/vendor/bootstrap.min.js',
 						'public/vendor/angular.min.js',
-						'public/vendor/angular-ui-router.min.js'
+						'public/vendor/angular-ui-router.min.js',
+						'public/vendor/angular-websocket.min.js'
 					];
 const appJS 		= [
 						'public/app.js',
