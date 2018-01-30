@@ -1,5 +1,8 @@
 # Config
 config.json
+#build
+./public/build/*
+./public/vendor/*
 # Logs
 logs
 *.log
