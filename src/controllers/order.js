@@ -56,6 +56,7 @@ const getCurrentDayCode = ()=>{
  */
 const computeNextDate = async(order) => {
 
+  const daysCode = ['SUN', 'MON', 'TUE', 'THU', 'WED', 'FRI', 'SAT'];
   const day = getCurrentDayCode();
   let now = new Date(Date.now());
   // get current date in minutes
