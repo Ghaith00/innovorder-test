@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <title>Innovorder test</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">  <link href="/stylesheets/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="static/stylesheets/style.css">
+</head>
+<body>
+<!-- NavBar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#"><i class="fa fa-cutlery" aria-hidden="true"></i>&nbsp; RestoX</a>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" ui-sref="schedule" ui-sref-active="active">
+          <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;Schedule
+        </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" ui-sref="order" ui-sref-active="active">
+          <i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;Orders
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!-- ui view -->
+<div ui-view></div>
+
+<!-- Third-party Libraries -->
+<script src="static/build/mcuDeps.min.js"></script>
+
+<!-- Application Code -->
+<script src="static/build/mcu.min.js"></script>
+
+</body>
+</html>
