@@ -17,7 +17,7 @@ const sortedIndex = (array, value) => {
 const coherentDates = (scheduleSet) => {
   // [..., {starti, endi}, ..., {startj, endj}, ...] is coherent if starti or endi not in [startj, endj]
   let timeLine = [];
-  const daysCode = ['MON', 'TUE', 'THU', 'WED', 'FRI', 'SAT', 'SUN'];
+  const daysCode = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
   let coherent = true;
   scheduleSet.forEach((schedule)=>{
     let start = schedule.start + daysCode.indexOf(schedule.day) * 1440;

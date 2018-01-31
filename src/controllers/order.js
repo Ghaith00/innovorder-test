@@ -3,6 +3,11 @@ const validator = require('./../validators')
 const socket = require('./../socket');
 const ScheduleSet = require('./../models/schedule-set');
 
+/**
+ * constant variables
+ */
+
+const daysCode = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
 /**
  * Get previous available ordering date
@@ -21,7 +26,6 @@ const getOldDate = async () => {
  */
 const getNextShift = async (day, time)=>{
   let nextShift = null ;
-  const daysCode = ['SUN', 'MON', 'TUE', 'THU', 'WED', 'FRI', 'SAT'];
   let previousEnd = Infinity;
   const cTime = time + daysCode.indexOf(day) * 1440;
   // get schedules
@@ -47,7 +51,6 @@ const round15 = (number) => {
  * get current day code
  */
 const getCurrentDayCode = ()=>{
-  const daysCode = ['SUN', 'MON', 'TUE', 'THU', 'WED', 'FRI', 'SAT'];
   const now = new Date(Date.now());
   return daysCode[now.getDay()];
 }
@@ -56,7 +59,6 @@ const getCurrentDayCode = ()=>{
  */
 const computeNextDate = async(order) => {
 
-  const daysCode = ['SUN', 'MON', 'TUE', 'THU', 'WED', 'FRI', 'SAT'];
   const day = getCurrentDayCode();
   let now = new Date(Date.now());
   // get current date in minutes
@@ -183,7 +185,6 @@ const nextAvailableOrderDate = async (request, response)=>{
   // if not in schedule
   if(!(await validator.inSchedule(day, now, now))){
     const nextShift = await getNextShift(day, now);
-    console.log(nextShift)
     response.json({ 'day' : nextShift.day, 'time' : nextShift.start});
   }
   // send current time
